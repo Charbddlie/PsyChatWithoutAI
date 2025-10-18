@@ -1,0 +1,19 @@
+{
+    "title": "PAAS 认知负荷自评量表",
+    "introduction": null,
+    "form_key": "post2",
+    "fields": [
+        {
+            "index": 1,
+            "type": "single_choice",
+            "question": "你在刚才的学习过程中投入了多少心理努力?请选择最适合你的数字1分=最少努力,5=中等努力,9=最大努力。",
+            "choices": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        },
+        {
+            "index": 2,
+            "type": "single_choice",
+            "question": "你认为刚才的学习材料难度如何?请选择最适合你的数字1分=非常简单,5分=中等难度,9分=非常困难",
+            "choices": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        }
+    ]
+}

@@ -1,0 +1,55 @@
+{
+    "title": "当前情绪状态",
+    "introduction": "请描述您此刻以下情绪的感受程度。（1=很少或没有,2=比较少,3=中等,4=比较多,5=非常多）",
+    "form_key": "pre2",
+    "fields": [
+        {
+            "index": 1,
+            "type": "single_choice",
+            "question": "兴奋的",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 2,
+            "type": "single_choice",
+            "question": "热情的",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 3,
+            "type": "single_choice",
+            "question": "享受的",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 4,
+            "type": "single_choice",
+            "question": "好奇的",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 5,
+            "type": "single_choice",
+            "question": "沮丧的",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 6,
+            "type": "single_choice",
+            "question": "焦虑的",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 7,
+            "type": "single_choice",
+            "question": "无聊的",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 8,
+            "type": "single_choice",
+            "question": "困惑的",
+            "choices": [1, 2, 3, 4, 5]
+        }
+    ]
+}

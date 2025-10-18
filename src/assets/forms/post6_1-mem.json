@@ -1,0 +1,97 @@
+{
+    "title": "回忆测试",
+    "introduction": "现在我们来测试您对刚才所学内容的掌握情况。\n每题可能有1个、2个、3个或4个正确答案。请选择所有正确选项,错选、多选或漏选均不得分。",
+    "form_key": "post6_1",
+    "fields": [
+        {
+            "index": 1,
+            "type": "multi_choice",
+            "question": "流感病毒可以分为哪几种类型?",
+            "choices": ["A.甲型", "B.乙型", "C.丙型", "D.丁型"]
+        },
+        {
+            "index": 2,
+            "type": "multi_choice",
+            "question": "主要感染人类的流感病毒类型是?",
+            "choices": ["A.甲型", "B.乙型", "C.丙型", "D.丁型"]
+        },
+        {
+            "index": 3,
+            "type": "multi_choice",
+            "question": "流感病毒的结构从外到内包括?",
+            "choices": ["A.包膜", "B.基质蛋白", "C.病毒核心", "D.细胞核"]
+        },
+        {
+            "index": 4,
+            "type": "multi_choice",
+            "question": "关于流感病毒表面蛋白质的描述,正确的是?",
+            "choices": ["A.HA蛋白呈杆状", "B.NA蛋白呈蘑菇状", "C.HA蛋白数量较多", "D.NA蛋白数量较多"]
+        },
+        {
+            "index": 5,
+            "type": "multi_choice",
+            "question": "HA和NA蛋白质也被称为?",
+            "choices": ["A.表面抗原", "B.核心蛋白", "C.基质蛋白", "D.包膜蛋白"]
+        },
+        {
+            "index": 6,
+            "type": "multi_choice",
+            "question": "目前已知的甲型流感病毒亚型总共有?",
+            "choices": ["A.100种", "B.135种", "C.150种", "D.200种"]
+        },
+        {
+            "index": 7,
+            "type": "multi_choice",
+            "question": "流感病毒主要通过什么方式传播?",
+            "choices": ["A.接触传播", "B.血液传播", "C.病毒飞沫传播播", "D.消化道传播"]
+        },
+        {
+            "index": 8,
+            "type": "multi_choice",
+            "question": "病毒飞沫被人体吸入后,会降落在哪些部位?",
+            "choices": ["A.鼻腔上皮细胞", "B.咽喉上皮细胞", "C.肺部上皮细胞", "D.胃部上皮细胞"]
+        },
+        {
+            "index": 9,
+            "type": "multi_choice",
+            "question": "正常细胞膜的选择透过性允许哪些物质通过?",
+            "choices": ["A.水分子", "B.营养物质", "C.病毒", "D.有害物质"]
+        },
+        {
+            "index": 10,
+            "type": "multi_choice",
+            "question": "病毒吸附在细胞表面的关键步骤是?",
+            "choices": ["A.HA蛋白与唾液酸受体结合", "B.NA蛋白与受体结合", "C.病毒直接穿透细胞膜", "D.细胞主动吞噬病毒"]
+        },
+        {
+            "index": 11,
+            "type": "multi_choice",
+            "question": "细胞将病毒包裹并送入体内的过程被称为?",
+            "choices": ["A.胞吐", "B.扩散", "C.渗透", "D.吞饮"]
+        },
+        {
+            "index": 12,
+            "type": "multi_choice",
+            "question": "进入细胞后,病毒会进行哪些活动?",
+            "choices": ["A.释放遗传物质", "B.劫持细胞器官", "C.大量复制", "D.立即死亡"]
+        },
+        {
+            "index": 13,
+            "type": "multi_choice",
+            "question": "新病毒从宿主细胞脱离时,起关键作用的是?",
+            "choices": ["A.HA蛋白", "B.NA蛋白", "C.基质蛋白", "D.病毒核心"]
+        },
+        {
+            "index": 14,
+            "type": "multi_choice",
+            "question": "病毒感染会导致哪些症状?",
+            "choices": ["A.鼻塞", "B.流涕", "C.咽喉疼痛", "D.水疱"]
+        },
+        {
+            "index": 15,
+            "type": "multi_choice",
+            "question": "流感病毒的遗传物质是?",
+            "choices": ["A.DNA", "B.蛋白质", "C.RNA", "D.脂质"]
+        }
+    ]
+}

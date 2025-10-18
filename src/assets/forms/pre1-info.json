@@ -1,0 +1,35 @@
+{
+    "title": "个人基本信息",
+    "introduction": null,
+    "fields": [
+        {
+            "type": "text",
+            "question": "年龄",
+            "display": "{{num:1,120}}岁",
+            "label": "{{num}}",
+            "size": "small"
+        },
+        {
+            "type": "single_choice",
+            "question": "性别",
+            "choices": ["男", "女"]
+        },
+        {
+            "type": "single_choice",
+            "question": "专业类别",
+            "choices": ["理工科（物理、化学、工程、数学、计算机等）", "文科（中文、历史、哲学、教育学等）", "社科（心理学、社会学、政治学等）", "其他:{{text}}"],
+            "label": ["理工科", "文科", "社科", "其他:{{text}}"]
+        },
+        {
+            "type": "single_choice",
+            "question": "年级",
+            "choices": ["大一", "大二", "大三", "大四", "研究生"]
+        },
+        {
+            "type": "single_choice",
+            "question": "您对AI技术的总体态度",
+            "choices": ["非常消极", "比较消极", "中性", "比较积极", "非常积极"],
+            "label": [1, 2, 3, 4, 5]
+        }
+    ]
+}

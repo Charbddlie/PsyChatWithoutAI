@@ -1,0 +1,35 @@
+{
+    "title": "迁移测验",
+    "introduction": "",
+    "form_key": "post6_2",
+    "fields": [
+        {
+            "index": 1,
+            "type": "text",
+            "question": "小明曾经注射过流感疫苗,但今年还是感染了流感。根据所学知识,请分析可能的原因。",
+            "display": "{{text}}",
+            "size": "large"
+        },
+        {
+            "index": 2,
+            "type": "text",
+            "question": "为什么流感病毒比其他使用DNA作为遗传物质的病原体更容易发生变异?请从遗传物质的角度解释。",
+            "display": "{{text}}",
+            "size": "large"
+        },
+        {
+            "index": 3,
+            "type": "text",
+            "question": "如果你是一名科学家,想要设计一种药物来阻止流感病毒感染细胞,根据所学的病毒感染过程,你会选择干扰哪个环节?请说明理由。",
+            "display": "{{text}}",
+            "size": "large"
+        },
+        {
+            "index": 4,
+            "type": "text",
+            "question": "除了接种疫苗外,根据流感病毒的传播方式和感染特点,请提出两种其他的预防流感感染的措施,并简要说明原理。",
+            "display": "{{text}}",
+            "size": "large"
+        }
+    ]
+}

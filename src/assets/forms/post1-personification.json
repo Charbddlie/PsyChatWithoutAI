@@ -1,0 +1,115 @@
+{
+    "title": "拟人化感知量表",
+    "introduction": "以下是多个关于你在刚刚学习时的主观感受与体验的陈述,请根据你的真实体验,从1=“完全不同意”到5=“完全同意”中选择一个最符合你感受的选项。",
+    "form_key": "post1",
+    "fields": [
+        {
+            "index": 1,
+            "type": "single_choice",
+            "question": "它关心我的学习感受。",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 2,
+            "type": "single_choice",
+            "question": "它让我觉得是在与人交流。",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 3,
+            "type": "single_choice",
+            "question": "和它学习互动时,我会感受到一种温暖的感觉。",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 4,
+            "type": "single_choice",
+            "question": "和它学习互动时,它总是表现得亲切而友好。",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 5,
+            "type": "single_choice",
+            "question": "即使没跟它交流,只看它的样子也让我觉得它不是死板的程序。",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 6,
+            "type": "single_choice",
+            "question": "它给我的感觉是一个会表达、会互动的角色,而不是一个纯粹的工具。",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 7,
+            "type": "single_choice",
+            "question": "它的外表（比如头像、风格等）让我觉得它是一个会回应的人,而不是冷冰冰的系统。",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 8,
+            "type": "single_choice",
+            "question": "它的反应方式自然生动。",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 9,
+            "type": "single_choice",
+            "question": "它有自己主动思考的过程。",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 10,
+            "type": "single_choice",
+            "question": "它能够深入的解释知识内容。",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 11,
+            "type": "single_choice",
+            "question": "它会主动进行分析,而不是被动地响应。",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 12,
+            "type": "single_choice",
+            "question": "它的用语和表达方式让我觉得它是一位经验丰富的老师。",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 13,
+            "type": "single_choice",
+            "question": "它像老师一样,根据我的反馈灵活调整回答方式。",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 14,
+            "type": "single_choice",
+            "question": "它对我的表现显得贴心和耐心,让我感觉得被老师关心着一样。",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 15,
+            "type": "single_choice",
+            "question": "它让我觉得有点奇怪、不太自然。",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 16,
+            "type": "single_choice",
+            "question": "它模仿人类情感表达的方式,让我觉得反感。",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 17,
+            "type": "single_choice",
+            "question": "它的表现有时像人,有时又不像人,这种感觉让我不适。",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 18,
+            "type": "single_choice",
+            "question": "它模仿人类的方式让我觉得有些别扭。",
+            "choices": [1, 2, 3, 4, 5]
+        }
+    ]
+}

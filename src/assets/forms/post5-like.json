@@ -1,0 +1,37 @@
+{
+    "title": "喜爱度量表",
+    "introduction": "请根据您与AI学习助手的交互体验,请选择符合您感受的数字,1=完全不同意,2=不同意,3=不确定,4=同意,5=完全同意。",
+    "form_key": "post5",
+    "fields": [
+        {
+            "index": 1,
+            "type": "single_choice",
+            "question": "这个助手是讨人喜欢的; ",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 2,
+            "type": "single_choice",
+            "question": "这个助手是亲切的; ",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 3,
+            "type": "single_choice",
+            "question": "这个助手是待人礼貌的; ",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 4,
+            "type": "single_choice",
+            "question": "这个助手是令人愉快的;",
+            "choices": [1, 2, 3, 4, 5]
+        },
+        {
+            "index": 5,
+            "type": "single_choice",
+            "question": "这个助手是让人放心接近的。",
+            "choices": [1, 2, 3, 4, 5]
+        }
+    ]
+}
