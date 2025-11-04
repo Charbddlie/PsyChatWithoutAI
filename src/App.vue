@@ -15,6 +15,7 @@ import {
 import pre1Info from './assets/forms/pre1-info.json'
 import pre2Emotion from './assets/forms/pre2-emotion.json'
 import pre3Background from './assets/forms/pre3-background_knowledge.json'
+import pre4Anthropomorphism from './assets/forms/pre4-anthropomorphism.json'
 import post1Personification from './assets/forms/post1-personification.json'
 import post2Cogload from './assets/forms/post2-cogload.json'
 import post3Emotion from './assets/forms/post3-emotion.json'
@@ -49,9 +50,10 @@ const steps = [
       primaryActionLabel: '开始实验',
     },
   },
-  // createFormStep('pre1-info', pre1Info),
-  // createFormStep('pre2-emotion', pre2Emotion),
-  // createFormStep('pre3-background', pre3Background),
+  createFormStep('pre1-info', pre1Info),
+  createFormStep('pre2-emotion', pre2Emotion),
+  createFormStep('pre3-background', pre3Background),
+  createFormStep('pre4-anthropomorphism', pre4Anthropomorphism),
   {
     id: 'lesson-intro',
     type: 'static',
@@ -179,7 +181,8 @@ function setCookie(name, value, days = 365) {
 }
 
 function getStoredUserId() {
-  return getCookie('psychat_user_id')
+  return null
+  // return getCookie('psychat_user_id')
 }
 
 function persistUserId(id) {

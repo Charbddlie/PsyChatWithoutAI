@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
+import logging
 
 HOST = '0.0.0.0'
 PORT = 8765
@@ -17,7 +18,7 @@ DATA_DIR = BASE_DIR / 'data'
 USER_RECORD_PATH = DATA_DIR / 'user_record.tsv'
 GROUP_SEQUENCE_PATH = DATA_DIR / 'group_sequence.json'
 
-RETURN_INCOMPLETE_SWITCH_GROUP = True  # 是否允许相同尝试另一个group的题目
+RETURN_INCOMPLETE_SWITCH_GROUP = True  # 是否允许相同用户尝试另一个group的题目
 
 REQUIRED_FORM_FILES = [
   'pre1-info.json',
@@ -36,9 +37,10 @@ GROUP_KEYS = ('group1', 'group2', 'group3', 'group4')
 
 DATA_DIR.mkdir(exist_ok=True)
 
-USER_RECORD_COLUMNS = [
+USER_RECORD_BASE_COLUMNS = [
   'userid',
   'group',
+  'lesson-duration_seconds',
   'pre1-age',
   'pre1-gender',
   'pre1-major',
@@ -47,6 +49,7 @@ USER_RECORD_COLUMNS = [
   'pre2-positive_affect',
   'pre2-negative_affect',
   'pre3-average_score',
+  'pre4-total_score',
   'post1-sociability',
   'post1-animacy',
   'post1-agency',
@@ -72,6 +75,45 @@ USER_RECORD_COLUMNS = [
   'post6_2-q4-score',
 ]
 
+FORM_QUESTION_INDICES = (
+  ('pre1-info', range(1, 6)),
+  ('pre2', range(1, 9)),
+  ('pre3', range(1, 10)),
+  ('pre4', range(1, 16)),
+  ('post1', range(1, 26)),
+  ('post2', range(1, 3)),
+  ('post3', range(1, 9)),
+  ('post4', range(1, 12)),
+  ('post5', range(1, 6)),
+  ('post6_1', range(1, 16)),
+  ('post6_2', range(1, 5)),
+)
+
+FORM_SELECTED_CHOICE_COLUMNS = []
+for form_key, indices in FORM_QUESTION_INDICES:
+  for index in indices:
+    column = f'{form_key}-q{index}-answer'
+    if column not in USER_RECORD_BASE_COLUMNS and column not in FORM_SELECTED_CHOICE_COLUMNS:
+      FORM_SELECTED_CHOICE_COLUMNS.append(column)
+
+USER_RECORD_COLUMNS = USER_RECORD_BASE_COLUMNS + FORM_SELECTED_CHOICE_COLUMNS
+
+LOG_DIR = BASE_DIR / 'log'
+LOG_DIR.mkdir(exist_ok=True)
+log_filename = datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S.log')
+log_path = LOG_DIR / log_filename
+
+logger = logging.getLogger("psychat")
+logger.setLevel(logging.INFO)
+
+file_handler = logging.FileHandler(log_path, encoding='utf-8')
+file_handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s %(message)s'))
+
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s %(message)s'))
+
+logger.addHandler(file_handler)
+logger.addHandler(console_handler)
 
 def stringify_value(value):
   if value is None:
@@ -131,85 +173,119 @@ def extract_answer(form_record, target_index):
   return None
 
 
+def record_form_answers(row, form_key, form_record):
+  if not isinstance(row, dict) or not form_key or not isinstance(form_record, dict):
+    return
+  answers = form_record.get('payload', {}).get('answers', [])
+  if not isinstance(answers, list):
+    return
+  for fallback_index, entry in enumerate(answers, start=1):
+    if not isinstance(entry, dict):
+      continue
+    index = entry.get('index') or fallback_index
+    column = f'{form_key}-q{index}-answer'
+    if column in row:
+      row[column] = sanitize_tsv_value(entry.get('selected_choice'))
+
+
 def build_user_record_row(user_id):
   user_dir = DATA_DIR / user_id
   if not user_dir.exists():
     return None
 
   forms_dir = user_dir / 'forms'
-  if not forms_dir.exists():
-    return None
+  forms_dir_exists = forms_dir.exists()
   row = {column: '' for column in USER_RECORD_COLUMNS}
   row['userid'] = sanitize_tsv_value(user_id)
 
   group_data = read_json_file(user_dir / 'group.json') or {}
   row['group'] = sanitize_tsv_value(group_data.get('group'))
 
-  pre1 = read_json_file(forms_dir / 'pre1-info.json') if forms_dir.exists() else None
+  lesson_record = read_json_file(user_dir / 'lesson.json')
+  if lesson_record:
+    duration_ms = lesson_record.get('payload', {}).get('duration_ms') if isinstance(lesson_record, dict) else None
+    if isinstance(duration_ms, (int, float)):
+      row['lesson-duration_seconds'] = sanitize_tsv_value(duration_ms / 1000)
+    elif duration_ms is not None:
+      row['lesson-duration_seconds'] = sanitize_tsv_value(duration_ms)
+
+  pre1 = read_json_file(forms_dir / 'pre1-info.json') if forms_dir_exists else None
   if pre1:
+    record_form_answers(row, 'pre1-info', pre1)
     row['pre1-age'] = sanitize_tsv_value(extract_answer(pre1, 1))
     row['pre1-gender'] = sanitize_tsv_value(extract_answer(pre1, 2))
     row['pre1-major'] = sanitize_tsv_value(extract_answer(pre1, 3))
     row['pre1-grade'] = sanitize_tsv_value(extract_answer(pre1, 4))
     row['pre1-ai_attitude'] = sanitize_tsv_value(extract_answer(pre1, 5))
 
-  pre2 = read_json_file(forms_dir / 'pre2.json') if forms_dir.exists() else None
+  pre2 = read_json_file(forms_dir / 'pre2.json') if forms_dir_exists else None
+  if pre2:
+    record_form_answers(row, 'pre2', pre2)
   if pre2 and isinstance(pre2.get('score'), dict):
     row['pre2-positive_affect'] = sanitize_tsv_value(pre2['score'].get('positive_affect'))
     row['pre2-negative_affect'] = sanitize_tsv_value(pre2['score'].get('negative_affect'))
 
-  pre3 = read_json_file(forms_dir / 'pre3.json') if forms_dir.exists() else None
+  pre3 = read_json_file(forms_dir / 'pre3.json') if forms_dir_exists else None
+  if pre3:
+    record_form_answers(row, 'pre3', pre3)
   if pre3 and isinstance(pre3.get('score'), dict):
     row['pre3-average_score'] = sanitize_tsv_value(pre3['score'].get('average_score'))
 
-  post1 = read_json_file(forms_dir / 'post1.json') if forms_dir.exists() else None
+  pre4 = read_json_file(forms_dir / 'pre4.json') if forms_dir_exists else None
+  if pre4:
+    record_form_answers(row, 'pre4', pre4)
+  if pre4 and isinstance(pre4.get('score'), dict):
+    row['pre4-total_score'] = sanitize_tsv_value(pre4['score'].get('total_score'))
+
+  post1 = read_json_file(forms_dir / 'post1.json') if forms_dir_exists else None
+  if post1:
+    record_form_answers(row, 'post1', post1)
   if post1 and isinstance(post1.get('score'), dict):
     for key in ('sociability', 'animacy', 'agency', 'teaching_support', 'disturbance'):
       column = f'post1-{key}'
       if column in row:
         row[column] = sanitize_tsv_value(post1['score'].get(key))
 
-  post2 = read_json_file(forms_dir / 'post2.json') if forms_dir.exists() else None
+  post2 = read_json_file(forms_dir / 'post2.json') if forms_dir_exists else None
   if post2:
+    record_form_answers(row, 'post2', post2)
     scores = post2.get('score', {}).get('scores', {}) if isinstance(post2.get('score'), dict) else {}
     for key in ('1', '2'):
       column = f'post2-{key}'
       if column in row:
         row[column] = sanitize_tsv_value(scores.get(key))
 
-  post3 = read_json_file(forms_dir / 'post3.json') if forms_dir.exists() else None
+  post3 = read_json_file(forms_dir / 'post3.json') if forms_dir_exists else None
+  if post3:
+    record_form_answers(row, 'post3', post3)
   if post3 and isinstance(post3.get('score'), dict):
     row['post3-positive_affect'] = sanitize_tsv_value(post3['score'].get('positive_affect'))
     row['post3-negative_affect'] = sanitize_tsv_value(post3['score'].get('negative_affect'))
 
-  post4 = read_json_file(forms_dir / 'post4.json') if forms_dir.exists() else None
+  post4 = read_json_file(forms_dir / 'post4.json') if forms_dir_exists else None
+  if post4:
+    record_form_answers(row, 'post4', post4)
   if post4 and isinstance(post4.get('score'), dict):
     for key in ('ability_trust', 'benevolence_trust', 'integrity_trust', 'overall_trust'):
       column = f'post4-{key}'
       if column in row:
         row[column] = sanitize_tsv_value(post4['score'].get(key))
 
-  post5 = read_json_file(forms_dir / 'post5.json') if forms_dir.exists() else None
+  post5 = read_json_file(forms_dir / 'post5.json') if forms_dir_exists else None
+  if post5:
+    record_form_answers(row, 'post5', post5)
   if post5 and isinstance(post5.get('score'), dict):
     row['post5-average_score'] = sanitize_tsv_value(post5['score'].get('average_score'))
 
-  post6_1 = read_json_file(forms_dir / 'post6_1.json') if forms_dir.exists() else None
+  post6_1 = read_json_file(forms_dir / 'post6_1.json') if forms_dir_exists else None
+  if post6_1:
+    record_form_answers(row, 'post6_1', post6_1)
   if post6_1 and isinstance(post6_1.get('score'), dict):
     row['post6_1-total_score'] = sanitize_tsv_value(post6_1['score'].get('total_score'))
 
-  post6_2 = read_json_file(forms_dir / 'post6_2.json') if forms_dir.exists() else None
+  post6_2 = read_json_file(forms_dir / 'post6_2.json') if forms_dir_exists else None
   if post6_2:
-    answers = post6_2.get('payload', {}).get('answers', []) if isinstance(post6_2, dict) else []
-    answers_map = {}
-    for fallback_index, entry in enumerate(answers, start=1):
-      if not isinstance(entry, dict):
-        continue
-      index = entry.get('index') or fallback_index
-      answers_map[int(index)] = entry.get('selected_choice')
-    for idx in range(1, 5):
-      column = f'post6_2-q{idx}-answer'
-      if column in row:
-        row[column] = sanitize_tsv_value(answers_map.get(idx))
+    record_form_answers(row, 'post6_2', post6_2)
 
   return row
 
@@ -293,18 +369,23 @@ def has_complete_user_data(user_id):
 
 
 def bootstrap_user_records():
-  existing_userids = read_existing_user_record_userids()
-  for entry in DATA_DIR.iterdir():
+  rows = []
+  for entry in sorted(DATA_DIR.iterdir(), key=lambda path: path.name):
     if not entry.is_dir():
       continue
     user_id = entry.name
-    if existing_userids and user_id in existing_userids:
-      continue
-    if not has_complete_user_data(user_id):
-      continue
     row = build_user_record_row(user_id)
     if row:
-      upsert_user_record(row)
+      rows.append(row)
+
+  try:
+    with USER_RECORD_PATH.open('w', encoding='utf-8', newline='') as handle:
+      writer = csv.writer(handle, delimiter='\t', lineterminator='\n')
+      writer.writerow(USER_RECORD_COLUMNS)
+      for row in rows:
+        writer.writerow([row.get(column, '') for column in USER_RECORD_COLUMNS])
+  except OSError:
+    return
 
 
 bootstrap_user_records()
@@ -442,13 +523,20 @@ def score_pre3(answers):
     'average_score': mean(numeric_values),
   }
 
+def score_pre4(answers):
+  values = [parse_numeric(value) for value in answers_to_map(answers).values()]
+  numeric_values = [value for value in values if value is not None]
+  return {
+    'total_score': sum(numeric_values),
+  }
+
 
 POST1_DIMENSIONS = {
-  'sociability': range(1, 5),
-  'animacy': range(5, 9),
-  'agency': range(9, 12),
-  'teaching_support': range(12, 15),
-  'disturbance': range(15, 19),
+  'sociability': range(1, 6),
+  'animacy': range(6, 11),
+  'agency': range(11, 16),
+  'teaching_support': range(16, 22),
+  'disturbance': range(22, 26),
 }
 
 
@@ -557,6 +645,8 @@ def score_form(form_key, payload):
     return score_pre2(answers)
   if form_key == 'pre3':
     return score_pre3(answers)
+  if form_key == 'pre4':
+    return score_pre4(answers)
   if form_key == 'post1':
     return score_post1(answers)
   if form_key == 'post2':
@@ -596,7 +686,6 @@ class RequestHandler(BaseHTTPRequestHandler):
 
   def do_POST(self):  # noqa: N802
     parsed = urlparse(self.path)
-    print(parsed.path)
     if parsed.path == '/register':
       self.handle_register()
     elif parsed.path == '/submit-form':
@@ -610,7 +699,6 @@ class RequestHandler(BaseHTTPRequestHandler):
 
   def do_GET(self):  # noqa: N802
     parsed = urlparse(self.path)
-    print(parsed.path)
     if parsed.path == '/group':
       self.handle_group(parsed)
     elif parsed.path == '/completion':
@@ -633,6 +721,7 @@ class RequestHandler(BaseHTTPRequestHandler):
   def handle_register(self):
     user_id = generate_user_id()
     user_dir, _ = ensure_user_directories(user_id)
+    logger.info(f'New user registered: {user_id}')
     meta = load_user_meta(user_dir)
     meta['user_id'] = user_id
     meta['registered_at'] = datetime.now(timezone.utc).isoformat()
@@ -652,7 +741,7 @@ class RequestHandler(BaseHTTPRequestHandler):
     if not user_id:
       self.send_json(200, {'status': 'success'})
       return
-
+    logger.info(f'User {user_id} submitted form {form_key}')
     _, forms_dir = ensure_user_directories(user_id)
     timestamp = datetime.now(timezone.utc).isoformat()
     score = score_form(form_key, payload) if form_key != 'pre1' else None
@@ -676,7 +765,8 @@ class RequestHandler(BaseHTTPRequestHandler):
     if not user_id:
       self.send_json(200, {'status': 'success'})
       return
-
+    
+    logger.info(f'User {user_id} completed lesson')
     user_dir, _ = ensure_user_directories(user_id)
     timestamp = datetime.now(timezone.utc).isoformat()
     record = {
@@ -697,10 +787,12 @@ class RequestHandler(BaseHTTPRequestHandler):
     user_dir, _ = ensure_user_directories(user_id)
     if RETURN_INCOMPLETE_SWITCH_GROUP:
       self.send_json(200, {'completed': False})
+      logger.info(f'User {user_id} completion status requested: False (incomplete switch mode)')
       return
     
     meta = load_user_meta(user_dir)
     completed = bool(meta.get('completed', False))
+    logger.info(f'User {user_id} completion status requested: {completed}')
     self.send_json(200, {'completed': completed})
 
   def handle_completion_post(self):
@@ -714,6 +806,7 @@ class RequestHandler(BaseHTTPRequestHandler):
       self.send_json(400, {'message': 'userid 参数不能为空'})
       return
 
+    logger.info(f'User {user_id} set completion status')
     user_dir, _ = ensure_user_directories(user_id)
     meta = load_user_meta(user_dir)
     meta.setdefault('user_id', user_id)
@@ -741,9 +834,11 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     user_dir, _ = ensure_user_directories(user_id)
     group = assign_group(user_id, user_dir)
+    logger.info(f'User {user_id} assigned group: {group}')
     self.send_json(200, {'group': group})
 
   def handle_user_record_download(self):
+    bootstrap_user_records()
     if not USER_RECORD_PATH.exists():
       self.send_json(404, {'message': '记录文件不存在'})
       return

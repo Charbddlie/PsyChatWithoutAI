@@ -6,110 +6,181 @@
         {
             "index": 1,
             "type": "single_choice",
-            "question": "它关心我的学习感受。",
-            "choices": [1, 2, 3, 4, 5]
+            "question": "这个学习助手让我感觉像在与一个伙伴互动。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Sociability"
         },
         {
             "index": 2,
             "type": "single_choice",
-            "question": "它让我觉得是在与人交流。",
-            "choices": [1, 2, 3, 4, 5]
+            "question": "这个学习助手的回应方式友好亲切。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Sociability"
         },
         {
             "index": 3,
             "type": "single_choice",
-            "question": "和它学习互动时,我会感受到一种温暖的感觉。",
-            "choices": [1, 2, 3, 4, 5]
+            "question": "与这个学习助手交流让我感到自在。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Sociability"
         },
         {
             "index": 4,
             "type": "single_choice",
-            "question": "和它学习互动时,它总是表现得亲切而友好。",
-            "choices": [1, 2, 3, 4, 5]
+            "question": "这个学习助手展现出了社交能力。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Sociability"
         },
         {
             "index": 5,
             "type": "single_choice",
-            "question": "即使没跟它交流,只看它的样子也让我觉得它不是死板的程序。",
-            "choices": [1, 2, 3, 4, 5]
+            "question": "我觉得这个学习助手很好相处。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Sociability"
         },
+            
         {
             "index": 6,
             "type": "single_choice",
-            "question": "它给我的感觉是一个会表达、会互动的角色,而不是一个纯粹的工具。",
-            "choices": [1, 2, 3, 4, 5]
+            "question": "这个学习助手的表达很生动。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Animacy"
         },
         {
             "index": 7,
             "type": "single_choice",
-            "question": "它的外表（比如头像、风格等）让我觉得它是一个会回应的人,而不是冷冰冰的系统。",
-            "choices": [1, 2, 3, 4, 5]
+            "question": "这个学习助手富有生命力。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Animacy"
         },
         {
             "index": 8,
             "type": "single_choice",
-            "question": "它的反应方式自然生动。",
-            "choices": [1, 2, 3, 4, 5]
+            "question": "这个学习助手的回应充满活力。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Animacy"
         },
         {
             "index": 9,
             "type": "single_choice",
-            "question": "它有自己主动思考的过程。",
-            "choices": [1, 2, 3, 4, 5]
+            "question": "这个学习助手让我感觉它是\"活\"的。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Animacy"
         },
         {
             "index": 10,
             "type": "single_choice",
-            "question": "它能够深入的解释知识内容。",
-            "choices": [1, 2, 3, 4, 5]
+            "question": "这个学习助手的表现方式很有生气。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Animacy"
         },
+            
         {
             "index": 11,
             "type": "single_choice",
-            "question": "它会主动进行分析,而不是被动地响应。",
-            "choices": [1, 2, 3, 4, 5]
+            "question": "这个学习助手展现出自主思考的能力。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Agency"
         },
         {
             "index": 12,
             "type": "single_choice",
-            "question": "它的用语和表达方式让我觉得它是一位经验丰富的老师。",
-            "choices": [1, 2, 3, 4, 5]
+            "question": "这个学习助手能够独立做出判断。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Agency"
         },
         {
             "index": 13,
             "type": "single_choice",
-            "question": "它像老师一样,根据我的反馈灵活调整回答方式。",
-            "choices": [1, 2, 3, 4, 5]
+            "question": "这个学习助手有自己的\"想法\"。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Agency"
         },
         {
             "index": 14,
             "type": "single_choice",
-            "question": "它对我的表现显得贴心和耐心,让我感觉得被老师关心着一样。",
-            "choices": [1, 2, 3, 4, 5]
+            "question": "这个学习助手展现出主动性。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Agency"
         },
         {
             "index": 15,
             "type": "single_choice",
-            "question": "它让我觉得有点奇怪、不太自然。",
-            "choices": [1, 2, 3, 4, 5]
+            "question": "这个学习助手能自主解决问题。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Agency"
         },
+            
         {
             "index": 16,
             "type": "single_choice",
-            "question": "它模仿人类情感表达的方式,让我觉得反感。",
-            "choices": [1, 2, 3, 4, 5]
+            "question": "这个学习助手能有效支持我的学习。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Teaching Support"
         },
         {
             "index": 17,
             "type": "single_choice",
-            "question": "它的表现有时像人,有时又不像人,这种感觉让我不适。",
-            "choices": [1, 2, 3, 4, 5]
+            "question": "这个学习助手提供的教学帮助很有价值。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Teaching Support"
         },
         {
             "index": 18,
             "type": "single_choice",
-            "question": "它模仿人类的方式让我觉得有些别扭。",
-            "choices": [1, 2, 3, 4, 5]
+            "question": "这个学习助手能针对我的需求给予指导。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Teaching Support"
+        },
+        {
+            "index": 19,
+            "type": "single_choice",
+            "question": "这个学习助手是一个有效的学习助手。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Teaching Support"
+        },
+        {
+            "index": 20,
+            "type": "single_choice",
+            "question": "这个学习助手能够促进我的理解。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Teaching Support"
+        },
+        {
+            "index": 21,
+            "type": "single_choice",
+            "question": "这个学习助手的教学支持很及时。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Teaching Support"
+        },
+            
+        {
+            "index": 22,
+            "type": "single_choice",
+            "question": "使用这个学习助手让我感到困扰。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Disturbance"
+        },
+        {
+            "index": 23,
+            "type": "single_choice",
+            "question": "这个学习助手的某些表现令人不适。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Disturbance"
+        },
+        {
+            "index": 24,
+            "type": "single_choice",
+            "question": "这个学习助手有时会干扰我的学习。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Disturbance"
+        },
+        {
+            "index": 25,
+            "type": "single_choice",
+            "question": "这个学习助手让我感到焦虑或不安。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Disturbance"
         }
     ]
 }

@@ -6,67 +6,67 @@
         {
             "index": 1,
             "type": "single_choice",
-            "question": "这个AI学习助手就像是学习内容领域的真正专家。",
+            "question": "这个学习助手就像是学习内容领域的真正专家。",
             "choices": [1, 2, 3, 4, 5, 6, 7]
         },
         {
             "index": 2,
             "type": "single_choice",
-            "question": "这个AI学习助手具有理解我的学习需求和偏好的专业知识。",
+            "question": "这个学习助手具有理解我的学习需求和偏好的专业知识。",
             "choices": [1, 2, 3, 4, 5, 6, 7]
         },
         {
             "index": 3,
             "type": "single_choice",
-            "question": "这个AI学习助手有能力理解我的学习需求和偏好。",
+            "question": "这个学习助手有能力理解我的学习需求和偏好。",
             "choices": [1, 2, 3, 4, 5, 6, 7]
         },
         {
             "index": 4,
             "type": "single_choice",
-            "question": "这个AI学习助手对学习内容有很好的知识储备。",
+            "question": "这个学习助手对学习内容有很好的知识储备。",
             "choices": [1, 2, 3, 4, 5, 6, 7]
         },
         {
             "index": 5,
             "type": "single_choice",
-            "question": "这个AI学习助手考虑了我的需求以及学习内容的所有重要方面。",
+            "question": "这个学习助手考虑了我的需求以及学习内容的所有重要方面。",
             "choices": [1, 2, 3, 4, 5, 6, 7]
         },
         {
             "index": 6,
             "type": "single_choice",
-            "question": "这个AI学习助手把我的利益放在首位。",
+            "question": "这个学习助手把我的利益放在首位。",
             "choices": [1, 2, 3, 4, 5, 6, 7]
         },
         {
             "index": 7,
             "type": "single_choice",
-            "question": "这个AI学习助手时刻记着我的利益。",
+            "question": "这个学习助手时刻记着我的利益。",
             "choices": [1, 2, 3, 4, 5, 6, 7]
         },
         {
             "index": 8,
             "type": "single_choice",
-            "question": "这个AI学习助手想要了解我的学习需求和偏好。",
+            "question": "这个学习助手想要了解我的学习需求和偏好。",
             "choices": [1, 2, 3, 4, 5, 6, 7]
         },
         {
             "index": 9,
             "type": "single_choice",
-            "question": "这个AI学习助手提供无偏见的学习建议。",
+            "question": "这个学习助手提供无偏见的学习建议。",
             "choices": [1, 2, 3, 4, 5, 6, 7]
         },
         {
             "index": 10,
             "type": "single_choice",
-            "question": "这个AI学习助手是诚实的。",
+            "question": "这个学习助手是诚实的。",
             "choices": [1, 2, 3, 4, 5, 6, 7]
         },
         {
             "index": 11,
             "type": "single_choice",
-            "question": "我认为这个AI学习助手具有正直的品格。",
+            "question": "我认为这个学习助手具有正直的品格。",
             "choices": [1, 2, 3, 4, 5, 6, 7]
         }
     ]

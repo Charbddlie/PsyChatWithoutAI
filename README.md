@@ -36,3 +36,18 @@ npm run dev
 ```sh
 npm run build
 ```
+
+### bash
+```sh
+cd dist
+python -m http.server 8080
+```
+
+获取实验数据
+```SH
+# 下载到运行目录
+curl -o noai_record.tsv http://8.153.195.92:8765/user-record
+
+# 在mac的终端运行，下载到桌面
+curl -o ~/Desktop/noai_record.tsv http://8.153.195.92:8765/user-record
+```
