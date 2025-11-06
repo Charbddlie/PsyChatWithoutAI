@@ -1,47 +1,28 @@
-# front
+## 预先准备
+运行只需要python，开发还需要node
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
+## 运行
+不论直接本地运行或打包前端程序都需要先运行
 ```sh
 npm install
 ```
-
-### Compile and Hot-Reload for Development
-
+### 本地开发 
 ```sh
 npm run dev
 ```
+dev和build模式访问的后端地址在src\config.js中设置
 
-### Compile and Minify for Production
-
+### 打包
 ```sh
 npm run build
 ```
-
-### bash
+然后可以上传到服务器启动，或者直接在本地启动
+启动指令
 ```sh
 cd dist
 python -m http.server 8080
 ```
+
 
 获取实验数据
 ```SH
