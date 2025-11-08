@@ -80,7 +80,7 @@ FORM_QUESTION_INDICES = (
   ('pre2', range(1, 9)),
   ('pre3', range(1, 10)),
   ('pre4', range(1, 16)),
-  ('post1', range(1, 26)),
+  ('post1', range(1, 27)),
   ('post2', range(1, 3)),
   ('post3', range(1, 9)),
   ('post4', range(1, 12)),
@@ -536,7 +536,7 @@ POST1_DIMENSIONS = {
   'animacy': range(6, 11),
   'agency': range(11, 16),
   'teaching_support': range(16, 22),
-  'disturbance': range(22, 26),
+  'disturbance': range(22, 27),
 }
 
 

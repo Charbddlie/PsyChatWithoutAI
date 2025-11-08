@@ -181,6 +181,13 @@
             "question": "这个学习助手让我感到焦虑或不安。",
             "choices": [1, 2, 3, 4, 5],
             "dimension": "Disturbance"
+        },
+        {
+            "index": 26,
+            "type": "single_choice",
+            "question": "这个学习助手表现出的类人行为会打断我的思考。",
+            "choices": [1, 2, 3, 4, 5],
+            "dimension": "Disturbance"
         }
     ]
 }
