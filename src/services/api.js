@@ -48,7 +48,7 @@ export async function registerUser(signal) {
     signal,
   })
 
-  return withTimeout(request.then(handleResponse), 5000)
+  return withTimeout(request.then(handleResponse), 20000)
 }
 
 export async function submitForm(payload, signal) {
@@ -59,7 +59,7 @@ export async function submitForm(payload, signal) {
     signal,
   })
 
-  return withTimeout(request.then(handleResponse), 5000)
+  return withTimeout(request.then(handleResponse), 20000)
 }
 
 export async function fetchUserGroup(userId, signal) {
@@ -72,7 +72,7 @@ export async function fetchUserGroup(userId, signal) {
     signal,
   })
 
-  return withTimeout(request.then(handleResponse), 5000)
+  return withTimeout(request.then(handleResponse), 20000)
 }
 
 export async function checkExperimentCompletion(userId, signal) {
@@ -85,7 +85,7 @@ export async function checkExperimentCompletion(userId, signal) {
     signal,
   })
 
-  return withTimeout(request.then(handleResponse), 5000)
+  return withTimeout(request.then(handleResponse), 20000)
 }
 
 export async function markExperimentComplete(userId, signal) {
@@ -96,7 +96,7 @@ export async function markExperimentComplete(userId, signal) {
     signal,
   })
 
-  return withTimeout(request.then(handleResponse), 5000)
+  return withTimeout(request.then(handleResponse), 20000)
 }
 
 export async function submitLessonSummary(payload, signal) {
@@ -107,5 +107,5 @@ export async function submitLessonSummary(payload, signal) {
     signal,
   })
 
-  return withTimeout(request.then(handleResponse), 5000)
+  return withTimeout(request.then(handleResponse), 20000)
 }
